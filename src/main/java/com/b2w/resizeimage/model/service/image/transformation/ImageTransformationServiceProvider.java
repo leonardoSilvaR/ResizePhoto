@@ -8,6 +8,9 @@ import com.b2w.resizeimage.repository.ImageStorageRepository;
 import com.b2w.resizeimage.utils.Constantes;
 import com.b2w.resizeimage.utils.ImageConverter;
 import com.mongodb.MongoException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,14 +30,15 @@ public class ImageTransformationServiceProvider implements ImageTransformationSe
     private RetrieveImagesService retrieve;
 
     @Override
-    public String getTransformation() {
+    public byte[] getTransformation() {
         persist();
-
+//        List<byte[]> images = new ArrayList<>();
+        byte[] image = null;
         for (ImageStorage ab : storageRepository.findAll()) {
-            ImageManipulation.exposeImage(ImageConverter.decode(ab.getBase64()), ab.getName());
+            image = ImageConverter.decode(ab.getBase64());
         }
 
-        return "A";
+        return image;
     }
 
     public void persist() {

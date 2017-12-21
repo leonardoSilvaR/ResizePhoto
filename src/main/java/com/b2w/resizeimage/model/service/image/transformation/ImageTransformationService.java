@@ -1,6 +1,7 @@
 package com.b2w.resizeimage.model.service.image.transformation;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -10,6 +11,6 @@ import java.util.List;
  */
 public interface ImageTransformationService {
     
-    String getTransformation();
+    byte[] getTransformation();
 
 }
